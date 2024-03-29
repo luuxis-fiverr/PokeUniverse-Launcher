@@ -51,7 +51,7 @@ class Splash {
     }
 
     async checkUpdate() {
-        return this.dowloadUpdate();
+        // return this.dowloadpdate();
         this.setStatus(`Recherche de mise à jour...`);
 
         ipcRenderer.invoke('update-app').then().catch(err => {
@@ -83,7 +83,7 @@ class Splash {
     async dowloadUpdate() {
         const repoURL = pkg.repository.url.replace("git+", "").replace(".git", "").replace("https://github.com/", "").split("/");
         const githubAPI = await nodeFetch('https://api.github.com').then(res => res.json()).catch(err => err);
-        
+
         const githubAPIRepoURL = githubAPI.repository_url.replace("{owner}", repoURL[0]).replace("{repo}", repoURL[1]);
         const githubAPIRepo = await nodeFetch(githubAPIRepoURL).then(res => res.json()).catch(err => err);
 
@@ -91,7 +91,7 @@ class Splash {
 
 
     }
-        
+
 
     async maintenanceCheck() {
         config.GetConfig().then(res => {
